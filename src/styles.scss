@@ -1,0 +1,29 @@
+/* You can add global styles to this file, and also import other style files */
+@import 'bootstrap/dist/css/bootstrap.min.css';
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+
+$spotify-green: #8ae9ab;
+$spotify-black: #383636;
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, $spotify-green 0%, $spotify-black 100%);
+}
+
+.spotify-green-text {
+  color: $spotify-green !important;
+}
+
+
+.spinner-container {
+  position: fixed; /* Cambia a fixed */
+  height: 100vh; /* 100% del viewport height */
+  width: 100vw; /* 100% del viewport width */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.676);
+  z-index: 2000;
+}

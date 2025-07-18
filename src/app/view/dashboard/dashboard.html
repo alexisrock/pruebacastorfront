@@ -1,0 +1,47 @@
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+  <div class="card shadow w-100" style="max-width: 500px; background: #191414; border: none; color: #fff;">
+    <div class="card-body">
+      <h3 class="card-title text-center mb-4 spotify-green-text">Buscar Artista</h3>
+      <form [formGroup]="artistForm" >
+        <div class="mb-3">
+          <label for="artistaname" class="form-label spotify-green-text">Nombre del artista</label>
+          <input type="text" id="artistaname" class="form-control" formControlName="artistaname" placeholder="Ingresa el nombre del artista" [ngClass]="{'is-invalid': artistForm.get('artistaname')?.invalid && artistForm.get('artistaname')?.touched}" style="background: #222326; color: #fff; border: 1px solid #1db954;">
+          <div *ngIf="artistForm.get('artistaname')?.invalid && artistForm.get('artistaname')?.touched" class="invalid-feedback text-danger">
+            El nombre es obligatorio.
+          </div>
+        </div>
+        <button type="submit" class="btn w-100"  (click)="onSearch()" style="background: #1db954; color: #191414; border: none;">Buscar</button>
+      </form>
+
+      @if (artistData) {
+        <div class="mt-4 p-3 rounded" style="background: #222326; border: 1px solid #1db954;">
+            <h5 class="spotify-green-text">Información del Artista</h5>
+    
+            <p><strong>Nombre:</strong> {{ artistData.name }}</p>
+    
+            <img [src]="artistData.image_url" class="img-fluid rounded mx-auto d-block mb-3" style="max-height: 350px; width: 100%; object-fit: cover;" alt="artista">
+            <p><strong>Descripción:</strong> {{ artistData.genres }}</p>
+            <p><strong>Numero de seguidores:</strong> {{ artistData.followers }}</p>
+            <p><strong>Pupularidad:</strong> {{ artistData.popularity }}</p>
+            
+          </div>
+
+      }
+
+    </div>
+  </div>
+</div>
+
+
+@if( loading |async ) {
+
+    <div class="spinner-container">
+  
+        <div class="d-grid gap-2 col-6 mx-auto mt-4">          
+            <button class="btn btn-success" type="button" disabled>
+                <span class="spinner-grow spinner-grow-sm" aria-hidden="true"></span>
+                <span role="status">Procesando...</span>
+            </button>
+        </div>   
+    </div>  
+    }
